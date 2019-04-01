@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="Editor de encuestas" Height="550" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
+        Title="Editor de encuestas" MinHeight="500" Height="550" MinWidth="650" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="LayoutRoot">
         <Grid x:Name="LayoutPrimary">
@@ -44,29 +44,101 @@
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
+        <Grid x:Name="LayoutSecondary">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
 
-            <Border Background="WhiteSmoke" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Center"
+            <Border Background="WhiteSmoke" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Center" Width="450"
                     MinWidth="350" Margin="50">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <TextBlock FontFamily="Segoe UI Semilight" FontSize="18" Foreground="#FF323232" Text="Nuevo elemento" Padding="0,5"/>
                     <StackPanel Grid.Row="1">
-                        <xctk:WatermarkTextBox Watermark="Nueva pregunta"/>
+                        <xctk:WatermarkTextBox x:Name="SurveyItemTitle" Watermark="Nueva pregunta" FontFamily="Segoe UI Semibold" TextWrapping="Wrap"/>
                         <StackPanel>
                             <TextBlock Text="Seleccione el tipo de pregunta:" Padding="0,10,0,5"/>
                             <RadioButton Content="Por opinión."/>
                             <RadioButton Content="Basado en escala numérica."/>
                         </StackPanel>
 
+                        <Grid Margin="5,10">
+                            <Grid x:Name="SurveyItemNumericScale">
+                                <Grid.Resources>
+                                    <Style x:Key="TbxScaleItemIcon" TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Style>
 
+                                    <Style x:Key="TbxScaleItemText" TargetType="{x:Type xctk:WatermarkTextBox}">
+                                        <Setter Property="Grid.Column" Value="1"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="5,0"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Escala: 1-->
+                                <Border Grid.Row="0" Background="#FFB4B4B4">
+                                    <TextBlock Text="1" Style="{StaticResource TbxScaleItemIcon}"/>
+                                </Border>
+                                <xctk:WatermarkTextBox Grid.Row="0" Style="{StaticResource TbxScaleItemText}"
+                                                       Watermark="Muy en desacuerdo"/>
+
+                                <!--Escala: 2-->
+                                <Border Grid.Row="1" Background="#FF969696">
+                                    <TextBlock Text="2" Style="{StaticResource TbxScaleItemIcon}"/>
+                                </Border>
+                                <xctk:WatermarkTextBox Grid.Row="1" Style="{StaticResource TbxScaleItemText}"
+                                                       Watermark="En desacuerdo"/>
+
+                                <!--Escala: 3-->
+                                <Border Grid.Row="2" Background="#787878">
+                                    <TextBlock Text="3" Style="{StaticResource TbxScaleItemIcon}"/>
+                                </Border>
+                                <xctk:WatermarkTextBox Grid.Row="2" Style="{StaticResource TbxScaleItemText}"
+                                                       Watermark="Neutral"/>
+
+                                <!--Escala: 4-->
+                                <Border Grid.Row="3" Background="#FF5A5A5A">
+                                    <TextBlock Text="4" Style="{StaticResource TbxScaleItemIcon}"/>
+                                </Border>
+                                <xctk:WatermarkTextBox Grid.Row="3" Style="{StaticResource TbxScaleItemText}"
+                                                       Watermark="De acuerdo"/>
+
+                                <!--Escala: 5-->
+                                <Border Grid.Row="4" Background="#FF3C3C3C">
+                                    <TextBlock Text="5" Style="{StaticResource TbxScaleItemIcon}"/>
+                                </Border>
+                                <xctk:WatermarkTextBox  Grid.Row="4" Style="{StaticResource TbxScaleItemText}"
+                                                        Watermark="Muy de acuerdo"/>
+
+
+                            </Grid>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,5,0,0">
+                        <Button Content="Crear" Padding="10,3"/>
+                        <Button Content="Cancelar" Padding="10,3"/>
                     </StackPanel>
                 </Grid>
             </Border>

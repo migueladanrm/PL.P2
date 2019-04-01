@@ -29,6 +29,15 @@ namespace SurveyCenter.UI
 
         private void BtnNewItem_Click(object sender, RoutedEventArgs e)
         {
+            LayoutSecondary.Visibility = Visibility.Visible;
+            SurveyItemTitle.Focus();
+
+            SetupSurveyItemEditor();
+        }
+
+        private void SetupSurveyItemEditor()
+        {
+            SurveyItemTitle.Clear();
 
         }
 
