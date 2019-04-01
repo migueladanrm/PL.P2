@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="Centro de encuestas" Height="450" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
+        Title="SurveyCenter" Height="450" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -13,10 +13,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0,0,0,1" Grid.Row="0" Height="50">
+        <Border Background="WhiteSmoke" BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" Grid.Row="0" Height="50">
             <Grid>
                 <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" 
-                           Text="Centro de encuentas" />
+                           Text="SurveyCenter" />
             </Grid>
         </Border>
 
@@ -32,8 +32,10 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
                     <StackPanel.Resources>
                         <Style TargetType="{x:Type Button}">
-                            <Setter Property="Padding" Value="10,3"/>
+                            <Setter Property="Padding" Value="10,5"/>
                             <Setter Property="Margin" Value="3,0"/>
+                            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                            <Setter Property="FontSize" Value="14"/>
                         </Style>
                     </StackPanel.Resources>
                     <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>

@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="Editor de encuestas" Height="550" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Editor de encuestas" Height="550" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="LayoutRoot">
         <Grid x:Name="LayoutPrimary">
@@ -15,14 +15,36 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0,0,0,1" Height="50">
-                <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"
-                Text="Crear encuesta"/>
+            <Border Background="WhiteSmoke" BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" Height="50">
+                <Grid>
+                    <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"
+                               Text="Editor de encuesta"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center">
+                        <Button Click="BtnNewItem_Click"
+                                Content="Nuevo item"/>
+                        <Button Content="Publicar"/>
+                    </StackPanel>
+                </Grid>
             </Border>
+
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Border BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" VerticalAlignment="Top" Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Nombre de la encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"/>
+                        <xctk:WatermarkTextBox x:Name="TbxSurveyTitle" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </ScrollViewer>
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary">
+        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
@@ -35,14 +57,20 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="18" Foreground="#FF323232" Text="Nuevo elemento"/>
+                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="18" Foreground="#FF323232" Text="Nuevo elemento" Padding="0,5"/>
                     <StackPanel Grid.Row="1">
                         <xctk:WatermarkTextBox Watermark="Nueva pregunta"/>
-                        
+                        <StackPanel>
+                            <TextBlock Text="Seleccione el tipo de pregunta:" Padding="0,10,0,5"/>
+                            <RadioButton Content="Por opinión."/>
+                            <RadioButton Content="Basado en escala numérica."/>
+                        </StackPanel>
+
+
                     </StackPanel>
                 </Grid>
             </Border>
-            
+
         </Grid>
     </Grid>
 
