@@ -1,0 +1,49 @@
+﻿<Window x:Class="SurveyCenter.UI.SurveyEditorWizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:SurveyCenter.UI"
+        mc:Ignorable="d"
+        Title="Editor de encuestas" Height="550" Width="700" WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid x:Name="LayoutPrimary">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0,0,0,1" Height="50">
+                <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"
+                Text="Crear encuesta"/>
+            </Border>
+
+        </Grid>
+
+        <Grid x:Name="LayoutSecondary">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Grid.Background>
+
+            <Border Background="WhiteSmoke" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Center"
+                    MinWidth="350" Margin="50">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="18" Foreground="#FF323232" Text="Nuevo elemento"/>
+                    <StackPanel Grid.Row="1">
+                        <xctk:WatermarkTextBox Watermark="Nueva pregunta"/>
+                        
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+        </Grid>
+    </Grid>
+
+</Window>

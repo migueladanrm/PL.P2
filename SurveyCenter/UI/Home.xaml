@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="Centro de encuestas" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Centro de encuestas" Height="450" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -29,9 +29,16 @@
 
                 <TextBlock FontFamily="Segoe UI Semilight" FontSize="26" Foreground="Gray" HorizontalAlignment="Center"
                     Text="¿Qué desea hacer?"/>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Button Content="Responder una encuesta"/>
-                    <Button Content="Crear una encuesta"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Padding" Value="10,3"/>
+                            <Setter Property="Margin" Value="3,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>
+                    <Button Click="BtnStartAction_Click" Tag="Action.CreateSurvey" Content="Crear una encuesta"/>
+                    <Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>
                 </StackPanel>
             </Grid>
         </Border>

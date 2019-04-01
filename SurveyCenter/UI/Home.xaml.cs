@@ -23,5 +23,26 @@ namespace SurveyCenter.UI
         {
             InitializeComponent();
         }
+
+        private void BtnStartAction_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(e.Source is Button))
+                return;
+
+            var tag = (e.Source as Button).Tag.ToString();
+
+            switch (tag) {
+                default:
+                    break;
+                case "Action.AnswerSurvey":
+                    break;
+                case "Action.CreateSurvey":
+                    new SurveyEditorWizard().Show();
+                    Close();
+                    break;
+                case "Action.ViewStats":
+                    break;
+            }
+        }
     }
 }
