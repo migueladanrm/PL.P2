@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using clojure.lang;
 
 namespace SurveyCenter
 {
@@ -15,7 +16,13 @@ namespace SurveyCenter
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            
+            // Ejecución de prueba de entorno de Clojure.
+            RT.load("sc.core");
+            var hello = RT.var("surveycenter", "hello");
+            hello.invoke();
+
+            // Carga la ventana de inicio.
+            new UI.Home().Show();
         }
     }
 }
