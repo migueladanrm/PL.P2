@@ -38,8 +38,32 @@ namespace SurveyCenter.UI
         private void SetupSurveyItemEditor()
         {
             SurveyItemTitle.Clear();
-
+            RbnSurveyItemModeChoice.IsChecked = true;
         }
 
+        private void BtnHideLS_Click(object sender, RoutedEventArgs e)
+        {
+            LayoutSecondary.Visibility = Visibility.Collapsed;
+        }
+
+        private void RbnSurveyItemMode_Checked(object sender, RoutedEventArgs e)
+        {
+            string id = (e.Source as RadioButton).Tag.ToString();
+
+            if (id.Equals("opt.choice")) {
+                SurveyItemChoiceMode.Visibility = Visibility.Visible;
+                SurveyItemNumericScaleMode.Visibility = Visibility.Collapsed;
+            }
+
+            if (id.Equals("opt.numericscale")) {
+                SurveyItemNumericScaleMode.Visibility = Visibility.Visible;
+                SurveyItemChoiceMode.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void RbnSurveyItemMode_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

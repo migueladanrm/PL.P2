@@ -60,20 +60,24 @@
 
                     <TextBlock FontFamily="Segoe UI Semilight" FontSize="18" Foreground="#FF323232" Text="Nuevo elemento" Padding="0,5"/>
                     <StackPanel Grid.Row="1">
-                        <xctk:WatermarkTextBox x:Name="SurveyItemTitle" Watermark="Nueva pregunta" FontFamily="Segoe UI Semibold" TextWrapping="Wrap"/>
+                        <xctk:WatermarkTextBox x:Name="SurveyItemTitle" FontFamily="Segoe UI Semibold" FontSize="13" TextWrapping="Wrap" VerticalContentAlignment="Center"
+                                               Watermark="Nueva pregunta" Padding="5,3"/>
                         <StackPanel>
                             <TextBlock Text="Seleccione el tipo de pregunta:" Padding="0,10,0,5"/>
-                            <RadioButton Content="Por opinión."/>
-                            <RadioButton Content="Basado en escala numérica."/>
+                            <RadioButton x:Name="RbnSurveyItemModeChoice"       Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
+                                         Tag="opt.choice" Content="Por opinión."/>
+                            <RadioButton x:Name="RbnSurveyItemModeNumericScale" Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
+                                         Tag="opt.numericscale" Content="Basado en escala numérica."/>
                         </StackPanel>
 
                         <Grid Margin="5,10">
-                            <Grid x:Name="SurveyItemNumericScale">
+                            <Grid x:Name="SurveyItemNumericScaleMode" d:IsHidden="True">
                                 <Grid.Resources>
                                     <Style x:Key="TbxScaleItemIcon" TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                         <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                                        <Setter Property="FontSize" Value="14"/>
                                         <Setter Property="Foreground" Value="White"/>
                                     </Style>
 
@@ -132,13 +136,33 @@
 
 
                             </Grid>
+                            <Grid x:Name="SurveyItemChoiceMode">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Button Content="Agregar elemento" HorizontalAlignment="Right"/>
+                                <StackPanel x:Name="StkSurveyEditorItemChoiceModeItemsContainer" Grid.Row="1">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <xctk:WatermarkTextBox />
+                                        <Button Content="Remover" Grid.Column="1"/>
+
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
                         </Grid>
 
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,5,0,0">
                         <Button Content="Crear" Padding="10,3"/>
-                        <Button Content="Cancelar" Padding="10,3"/>
+                        <Button Click="BtnHideLS_Click" Content="Cancelar" Padding="10,3"/>
                     </StackPanel>
                 </Grid>
             </Border>
