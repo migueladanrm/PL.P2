@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SurveyCenter.Models;
 
 namespace SurveyCenter.UI.Controls
 {
@@ -21,6 +22,11 @@ namespace SurveyCenter.UI.Controls
     public partial class SurveyEditorItem : UserControl
     {
         public SurveyEditorItem()
+        {
+            InitializeComponent();
+        }
+
+        public SurveyEditorItem(SurveyItem item)
         {
             InitializeComponent();
         }

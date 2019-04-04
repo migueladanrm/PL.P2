@@ -14,12 +14,12 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#323232" TextWrapping="Wrap"
+            <TextBlock x:Name="TxtItemCaption" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#323232" TextWrapping="Wrap"
                 Text="¿Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?"/>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Editar"/>
-                <Button Content="Eliminar"/>
+                <Button x:Name="BtnEdit" Content="Editar"/>
+                <Button x:Name="BtnDelete" Content="Eliminar"/>
             </StackPanel>
         </Grid>
     </Border>

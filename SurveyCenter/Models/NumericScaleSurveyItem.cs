@@ -9,5 +9,8 @@ namespace SurveyCenter.Models
     public class NumericScaleSurveyItem : SurveyItem
     {
 
+        public Dictionary<NumericScale, string> NumericScale { get; set; }
+
+
     }
 }

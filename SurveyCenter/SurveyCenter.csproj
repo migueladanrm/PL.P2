@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Models\NumericScale.cs" />
     <Compile Include="Models\NumericScaleSurveyItem.cs" />
+    <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\SurveyItem.cs" />
     <Compile Include="UI\Controls\SurveyEditorItem.xaml.cs">
       <DependentUpon>SurveyEditorItem.xaml</DependentUpon>
