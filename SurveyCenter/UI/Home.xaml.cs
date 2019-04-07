@@ -66,18 +66,23 @@ namespace SurveyCenter.UI
             switch (id) {
                 case nameof(LSNewSurvey):
                     LSNewSurvey.Visibility = Visibility.Visible;
-                    LSNewSurvey_SurveyName.Clear();
-                    LSNewSurvey_SurveyName.Focus();
+                    LSNewSurveyTbxSurveyName.Clear();
+                    LSNewSurveyTbxSurveyName.Focus();
                     break;
             }
         }
 
         private void LSDialogNewSurveyBtnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (LSNewSurvey_SurveyName.Text.Length == 0 || string.IsNullOrWhiteSpace(LSNewSurvey_SurveyName.Text)) {
+            if (LSNewSurveyTbxSurveyName.Text.Length == 0 || string.IsNullOrWhiteSpace(LSNewSurveyTbxSurveyName.Text)) {
                 MessageBox.Show("Introdúzca un nombre válido para la encuesta.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LSNewSurveyTbxSurveyName.Focus();
                 return;
             }
+
+            Workspace.SurveyNew(LSNewSurveyTbxSurveyName.Text);
+            new SurveyEditorWizard().Show();
+            Close();
         }
     }
 }

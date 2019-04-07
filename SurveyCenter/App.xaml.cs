@@ -1,5 +1,4 @@
-﻿using clojure.lang;
-using System.Windows;
+﻿using System.Windows;
 
 namespace SurveyCenter
 {
@@ -10,17 +9,13 @@ namespace SurveyCenter
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //InitializeClojureRuntime();
+            Workspace.SetupWorkspace();
+            Workspace.InitializeClojureRuntime();
 
             // Carga la ventana de inicio.
             new UI.Home().Show();
         }
 
-        private static void InitializeClojureRuntime()
-        {
-            RT.load("sc.core");
-            var hello = RT.var("surveycenter", "hello");
-            hello.invoke();
-        }
+
     }
 }
