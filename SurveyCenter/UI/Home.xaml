@@ -15,6 +15,16 @@
             <Setter Property="Padding" Value="10"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+
+        <Style x:Key="LSAnswerSurveyLblSurvey" TargetType="{x:Type Label}">
+            <Setter Property="BorderBrush" Value="#FFC8C8C8"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#FF0589F4"/>
+        </Style>
+        
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot">
@@ -89,7 +99,8 @@
 
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="LSAnswerSurveyStkAvailableSurveys">
-
+                            <Label Content="Mi primera encuesta" Style="{StaticResource LSAnswerSurveyLblSurvey}"
+                                   MouseLeftButtonDown="LSNewSurveyLblSurvey_MouseLeftButtonDown"/>
                         </StackPanel>
                     </ScrollViewer>
 

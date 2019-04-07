@@ -21,6 +21,12 @@
                                Text="Editor de encuesta"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Padding" Value="10,3"/>
+                                <Setter Property="Margin" Value="10,0,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
                         <Button Click="BtnNewItem_Click"
                                 Content="Nuevo item"/>
                         <Button Content="Publicar"/>
@@ -38,9 +44,8 @@
 
                         <TextBlock Text="Encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"
                                    Foreground="Gray" FontFamily="Segoe UI Semibold"/>
-                        <!--<xctk:WatermarkTextBox x:Name="TbxSurveyTitle" Grid.Column="1"/>-->
-                        <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0,5"
-                                   Text="for large data you should optimize it and switch to using vectors"/>
+                        <TextBlock x:Name="TxtSurveyName" TextWrapping="Wrap" Grid.Column="1" Margin="0,5" FontFamily="Segoe UI Semibold" FontSize="13"
+                                   Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."/>
                     </Grid>
                 </Border>
             </ScrollViewer>

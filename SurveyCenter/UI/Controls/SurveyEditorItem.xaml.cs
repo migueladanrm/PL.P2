@@ -30,5 +30,10 @@ namespace SurveyCenter.UI.Controls
         {
             InitializeComponent();
         }
+
+        public int ItemId { get; set; }
+        public string ItemCaption { get; set; }
+        public SurveyItemKind ItemKind { get; set; }
+
     }
 }

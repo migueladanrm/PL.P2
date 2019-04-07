@@ -15,7 +15,8 @@ namespace SurveyCenter
         public const string CORE_NS = "surveycenter";
         public const string PATH_DATA = "data";
         public static readonly string PATH_SURVEY_REPO = $"{PATH_DATA}\\survey-repo.json";
-        
+        public static readonly string PATH_SURVEY_RESPONSES = $"{PATH_DATA}\\survey-responses.json";
+
         public static string GenerateHexId()
         {
             return Guid.NewGuid().ToString().Substring(0, 8);
@@ -28,6 +29,9 @@ namespace SurveyCenter
 
             if (!File.Exists(PATH_SURVEY_REPO))
                 File.WriteAllText(PATH_SURVEY_REPO, "[]");
+
+            if (!File.Exists(PATH_SURVEY_RESPONSES))
+                File.WriteAllText(PATH_SURVEY_RESPONSES, "[]");
         }
 
         public static void InitializeClojureRuntime()

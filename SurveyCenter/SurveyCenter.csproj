@@ -96,6 +96,7 @@
     <Compile Include="Models\NumericScaleSurveyItem.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\SurveyItem.cs" />
+    <Compile Include="Models\SurveyItemKind.cs" />
     <Compile Include="UI\Controls\SurveyEditorItem.xaml.cs">
       <DependentUpon>SurveyEditorItem.xaml</DependentUpon>
     </Compile>
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="UI\SurveyEditorWizard.xaml.cs">
       <DependentUpon>SurveyEditorWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SurveyWizard.xaml.cs">
+      <DependentUpon>SurveyWizard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Workspace.cs" />
   </ItemGroup>
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\SurveyEditorWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SurveyWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

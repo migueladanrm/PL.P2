@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using clojure.lang;
+using Newtonsoft.Json.Linq;
 
 namespace SurveyCenter.UI
 {
@@ -44,8 +45,7 @@ namespace SurveyCenter.UI
                     ShowLSDialog(nameof(LSNewSurvey));
                     break;
                 case "Action.ViewStats":
-                    var hello = RT.var("surveycenter", "hello");
-                    hello.invoke();
+                    Console.WriteLine("No action implemented!");
                     break;
             }
         }
@@ -70,6 +70,18 @@ namespace SurveyCenter.UI
                     break;
                 case nameof(LSAnswerSurvey):
                     LSAnswerSurvey.Visibility = Visibility.Visible;
+                    LSAnswerSurveyStkAvailableSurveys.Children.Clear();
+
+                    foreach (JObject survey in Workspace.SurveyLibraryGet()) {
+                        var lbl = new Label() {
+                            Content = (string)survey["name"],
+                            Style = (Style)FindResource("LSAnswerSurveyLblSurvey"),
+                            Tag = (string)survey["id"]
+                        };
+                        lbl.MouseLeftButtonDown += LSNewSurveyLblSurvey_MouseLeftButtonDown;
+
+                        LSAnswerSurveyStkAvailableSurveys.Children.Add(lbl);
+                    }
                     break;
             }
         }
@@ -86,6 +98,12 @@ namespace SurveyCenter.UI
             new SurveyEditorWizard(surveyId).Show();
 
             Close();
+        }
+
+        private void LSNewSurveyLblSurvey_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var surveyId = (e.Source as FrameworkElement).Tag.ToString();
+            Console.WriteLine(surveyId);
         }
     }
 }
