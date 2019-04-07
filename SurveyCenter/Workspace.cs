@@ -47,7 +47,19 @@ namespace SurveyCenter
 
         public static JArray SurveyLibraryGet()
             => JArray.Parse(File.ReadAllText(PATH_SURVEY_REPO));
-       
+
+        public static JObject SurveyGet(string surveyId)
+        {
+            var surveyGet = RT.var(CORE_NS, "survey-get");
+            var result = surveyGet.invoke(SurveyLibraryGet().ToString(), surveyId);
+
+            try {
+                return JObject.Parse(result.ToString());
+            } catch {
+                return null;
+            }
+        }
+
         public static string SurveyNew(string name)
         {
             var id = GenerateHexId();
@@ -55,6 +67,9 @@ namespace SurveyCenter
             var result = surveyNew.invoke(SurveyLibraryGet().ToString(), id, name);
 
             SurveyLibrarySave(JArray.Parse(result.ToString()));
+
+            WriteLine($"Se ha creado una encuesta con el identificador '{id}'.");
+
             return id;
 
         }

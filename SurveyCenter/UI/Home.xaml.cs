@@ -38,11 +38,10 @@ namespace SurveyCenter.UI
                 default:
                     break;
                 case "Action.AnswerSurvey":
+                    ShowLSDialog(nameof(LSAnswerSurvey));
                     break;
                 case "Action.CreateSurvey":
                     ShowLSDialog(nameof(LSNewSurvey));
-                    //new SurveyEditorWizard().Show();
-                    //Close();
                     break;
                 case "Action.ViewStats":
                     var hello = RT.var("surveycenter", "hello");
@@ -51,9 +50,9 @@ namespace SurveyCenter.UI
             }
         }
 
-        private void LSHide(object sender,RoutedEventArgs e)
+        private void LSHide(object sender, RoutedEventArgs e)
         {
-            LayoutSecondary.Visibility = Visibility.Collapsed;  
+            LayoutSecondary.Visibility = Visibility.Collapsed;
         }
 
         private void ShowLSDialog(string id)
@@ -69,6 +68,9 @@ namespace SurveyCenter.UI
                     LSNewSurveyTbxSurveyName.Clear();
                     LSNewSurveyTbxSurveyName.Focus();
                     break;
+                case nameof(LSAnswerSurvey):
+                    LSAnswerSurvey.Visibility = Visibility.Visible;
+                    break;
             }
         }
 
@@ -80,8 +82,9 @@ namespace SurveyCenter.UI
                 return;
             }
 
-            Workspace.SurveyNew(LSNewSurveyTbxSurveyName.Text);
-            new SurveyEditorWizard().Show();
+            var surveyId = Workspace.SurveyNew(LSNewSurveyTbxSurveyName.Text);
+            new SurveyEditorWizard(surveyId).Show();
+
             Close();
         }
     }

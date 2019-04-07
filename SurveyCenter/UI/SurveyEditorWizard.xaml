@@ -36,15 +36,18 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Nombre de la encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"/>
-                        <xctk:WatermarkTextBox x:Name="TbxSurveyTitle" Grid.Column="1"/>
+                        <TextBlock Text="Encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"
+                                   Foreground="Gray" FontFamily="Segoe UI Semibold"/>
+                        <!--<xctk:WatermarkTextBox x:Name="TbxSurveyTitle" Grid.Column="1"/>-->
+                        <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0,5"
+                                   Text="for large data you should optimize it and switch to using vectors"/>
                     </Grid>
                 </Border>
             </ScrollViewer>
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary">
+        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>

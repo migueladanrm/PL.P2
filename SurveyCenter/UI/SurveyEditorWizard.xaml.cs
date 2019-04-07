@@ -19,12 +19,22 @@ namespace SurveyCenter.UI
     /// </summary>
     public partial class SurveyEditorWizard : Window
     {
+        private string currentSurvey;
+
         public SurveyEditorWizard()
         {
             InitializeComponent();
 
             LayoutSecondary.Visibility = Visibility.Collapsed;
-            TbxSurveyTitle.Focus();
+        }
+
+        public SurveyEditorWizard(string surveyId)
+        {
+            InitializeComponent();
+
+            LayoutSecondary.Visibility = Visibility.Collapsed;
+
+            currentSurvey = surveyId;
         }
 
         private void BtnNewItem_Click(object sender, RoutedEventArgs e)
