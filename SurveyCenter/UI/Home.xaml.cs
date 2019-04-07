@@ -23,6 +23,8 @@ namespace SurveyCenter.UI
         public Home()
         {
             InitializeComponent();
+
+            LayoutSecondary.Visibility = Visibility.Collapsed;
         }
 
         private void BtnStartAction_Click(object sender, RoutedEventArgs e)
@@ -38,13 +40,43 @@ namespace SurveyCenter.UI
                 case "Action.AnswerSurvey":
                     break;
                 case "Action.CreateSurvey":
-                    new SurveyEditorWizard().Show();
-                    Close();
+                    ShowLSDialog(nameof(LSNewSurvey));
+                    //new SurveyEditorWizard().Show();
+                    //Close();
                     break;
                 case "Action.ViewStats":
                     var hello = RT.var("surveycenter", "hello");
                     hello.invoke();
                     break;
+            }
+        }
+
+        private void LSHide(object sender,RoutedEventArgs e)
+        {
+            LayoutSecondary.Visibility = Visibility.Collapsed;  
+        }
+
+        private void ShowLSDialog(string id)
+        {
+            LayoutSecondary.Visibility = Visibility.Visible;
+
+            foreach (FrameworkElement child in LayoutSecondary.Children)
+                child.Visibility = Visibility.Collapsed;
+
+            switch (id) {
+                case nameof(LSNewSurvey):
+                    LSNewSurvey.Visibility = Visibility.Visible;
+                    LSNewSurvey_SurveyName.Clear();
+                    LSNewSurvey_SurveyName.Focus();
+                    break;
+            }
+        }
+
+        private void LSDialogNewSurveyBtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            if (LSNewSurvey_SurveyName.Text.Length == 0 || string.IsNullOrWhiteSpace(LSNewSurvey_SurveyName.Text)) {
+                MessageBox.Show("Introdúzca un nombre válido para la encuesta.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
         }
     }

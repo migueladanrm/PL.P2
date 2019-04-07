@@ -3,47 +3,78 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
         Title="SurveyCenter" Height="450" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
 
+    <Window.Resources>
+        <Style x:Key="LSDialog" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid x:Name="LayoutPrimary">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Border Background="WhiteSmoke" BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" Grid.Row="0" Height="50">
-            <Grid>
-                <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" 
+            <Border Background="WhiteSmoke" BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" Grid.Row="0" Height="50">
+                <Grid>
+                    <TextBlock FontFamily="Segoe UI Semibold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" 
                            Text="SurveyCenter" />
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
 
-        <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+            <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                <TextBlock FontFamily="Segoe UI Semilight" FontSize="26" Foreground="Gray" HorizontalAlignment="Center"
+                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="26" Foreground="Gray" HorizontalAlignment="Center"
                     Text="¿Qué desea hacer?"/>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
-                    <StackPanel.Resources>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Padding" Value="10,5"/>
-                            <Setter Property="Margin" Value="3,0"/>
-                            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
-                            <Setter Property="FontSize" Value="14"/>
-                        </Style>
-                    </StackPanel.Resources>
-                    <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>
-                    <Button Click="BtnStartAction_Click" Tag="Action.CreateSurvey" Content="Crear una encuesta"/>
-                    <Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="Margin" Value="3,0"/>
+                                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                                <Setter Property="FontSize" Value="14"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>
+                        <Button Click="BtnStartAction_Click" Tag="Action.CreateSurvey" Content="Crear una encuesta"/>
+                        <Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="LayoutSecondary">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Grid.Background>
+
+            <Border x:Name="LSNewSurvey" Style="{StaticResource LSDialog}">
+                <StackPanel>
+                    <TextBlock Text="Crear nueva encuesta" FontFamily="Segoe UI Semilight" FontSize="20" Foreground="Gray"/>
+                    <TextBlock Text="Indique un nombre a la encuesta para empezar."/>
+                    <xctk:WatermarkTextBox x:Name="LSNewSurvey_SurveyName" Watermark="Nueva encuesta"         />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="LSDialogNewSurveyBtnStart" Content="Comenzar" Click="LSDialogNewSurveyBtnStart_Click"/>
+                        <Button Content="Cancelar" Click="LSHide"/>
+                    </StackPanel>
                 </StackPanel>
-            </Grid>
-        </Border>
+            </Border>
+        </Grid>
     </Grid>
 
 </Window>
