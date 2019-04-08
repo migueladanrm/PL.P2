@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
 
 namespace SurveyCenter.UI
 {
@@ -19,9 +20,26 @@ namespace SurveyCenter.UI
     /// </summary>
     public partial class SurveyWizard : Window
     {
+        private JObject survey;
+
         public SurveyWizard()
         {
             InitializeComponent();
+        }
+
+        public SurveyWizard(string surveyId)
+        {
+            InitializeComponent();
+
+            LayoutSecondary.Visibility = Visibility.Collapsed;
+
+            LoadSurvey(surveyId);
+        }
+
+        private void LoadSurvey(string surveyId)
+        {
+            survey = Workspace.SurveyGet(surveyId);
+            TxtSurveyName.Text = (string)survey["name"];
         }
     }
 }

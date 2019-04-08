@@ -5,7 +5,7 @@
     /// </summary>
     public enum SurveyItemKind
     {
-        Choice = 0x1,
-        NumericScale = 0x2,
+        SingleChoice = 0x1,
+        ScaleChoice = 0x2,
     }
 }

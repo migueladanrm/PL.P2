@@ -67,25 +67,31 @@
             </Border>
         </Grid>
 
-        <Grid x:Name="LayoutSecondary">
+        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
 
-            <Border x:Name="LSNewSurvey" Style="{StaticResource LSDialog}" d:IsHidden="True">
+            <Border x:Name="LSNewSurvey" Style="{StaticResource LSDialog}">
                 <StackPanel>
                     <TextBlock Text="Crear nueva encuesta" FontFamily="Segoe UI Semilight" FontSize="20" Foreground="Gray"/>
                     <TextBlock Text="Indique un nombre a la encuesta para empezar." Padding="0,5,0,10"/>
                     <xctk:WatermarkTextBox x:Name="LSNewSurveyTbxSurveyName" Watermark="Nueva encuesta"         />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Padding" Value="10,3"/>
+                                <Setter Property="Margin" Value="10,0,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
                         <Button x:Name="LSDialogNewSurveyBtnStart" Content="Comenzar" Click="LSDialogNewSurveyBtnStart_Click"/>
                         <Button Content="Cancelar" Click="LSHide"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
 
-            <Border x:Name="LSAnswerSurvey" Style="{StaticResource LSDialog}" Margin="50">
+            <Border x:Name="LSAnswerSurvey" Style="{StaticResource LSDialog}" Margin="50" d:IsHidden="True">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>

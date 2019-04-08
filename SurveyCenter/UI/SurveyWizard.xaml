@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="SurveyWizard" Height="450" Width="800">
-    <Grid>
-        
+        Title="Evaluar encuesta" Height="450" Width="600" MinHeight="500" MinWidth="600" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid x:Name="LayoutPrimary">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Background="WhiteSmoke" BorderBrush="#c8c8c8" BorderThickness="0,0,0,1" Grid.Row="0" MinHeight="50" Padding="0,10">
+                <Grid>
+                    <TextBlock x:Name="TxtSurveyName" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="Gray" HorizontalAlignment="Center" Margin="30,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"
+                               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"/>
+                </Grid>
+            </Border>
+            
+        </Grid>
+        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Grid.Background>
+
+        </Grid>
     </Grid>
+
 </Window>

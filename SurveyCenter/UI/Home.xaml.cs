@@ -104,6 +104,9 @@ namespace SurveyCenter.UI
         {
             var surveyId = (e.Source as FrameworkElement).Tag.ToString();
             Console.WriteLine(surveyId);
+
+            new SurveyWizard(surveyId).Show();
+            Close();
         }
     }
 }
