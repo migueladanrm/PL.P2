@@ -40,6 +40,10 @@ namespace SurveyCenter.UI
         {
             survey = Workspace.SurveyGet(surveyId);
             TxtSurveyName.Text = (string)survey["name"];
+
+            foreach(JObject item in survey["items"]) {
+
+            }
         }
     }
 }

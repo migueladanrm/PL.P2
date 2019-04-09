@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SurveyCenter.UI"
+        xmlns:controls="clr-namespace:SurveyCenter.UI.Controls"
         mc:Ignorable="d"
         Title="Evaluar encuesta" Height="450" Width="600" MinHeight="500" MinWidth="600" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
 
@@ -20,6 +21,12 @@
                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"/>
                 </Grid>
             </Border>
+
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <controls:SurveyItem/>
+                </StackPanel>
+            </ScrollViewer>
             
         </Grid>
         <Grid x:Name="LayoutSecondary" d:IsHidden="True">
