@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json.Linq;
+using SurveyCenter.UI.Controls;
 
 namespace SurveyCenter.UI
 {
@@ -38,11 +39,19 @@ namespace SurveyCenter.UI
 
         private void LoadSurvey(string surveyId)
         {
+            StkSurveyItems.Children.Clear();
+
             survey = Workspace.SurveyGet(surveyId);
             TxtSurveyName.Text = (string)survey["name"];
 
-            foreach(JObject item in survey["items"]) {
+            int count = 1;
 
+            foreach(JObject item in survey["items"]) {
+                var ctrl = new SurveyItem(item);
+                ctrl.TxtItemNumber.Text = $"{count}";
+                StkSurveyItems.Children.Add(ctrl);
+
+                count++;
             }
         }
     }

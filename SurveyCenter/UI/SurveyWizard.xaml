@@ -23,7 +23,7 @@
             </Border>
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+                <StackPanel x:Name="StkSurveyItems">
                     <controls:SurveyItem/>
                 </StackPanel>
             </ScrollViewer>
