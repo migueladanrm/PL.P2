@@ -29,17 +29,18 @@ namespace SurveyCenter.UI.Controls
             InitializeComponent();
         }
 
-        public SurveyItem(JObject item)
+        public SurveyItem(int itemNumber, JObject item)
         {
             InitializeComponent();
+
+            itemId = itemNumber;
 
             LoadItem(item);
         }
 
         private void LoadItem(JObject item)
         {
-            itemId = (int)item["item_id"];
-
+            TxtItemNumber.Text = $"{itemId}";
             TxtItemCaption.Text = (string)item["caption"];
 
             var itemType = (SurveyItemKind)Enum.Parse(typeof(SurveyItemKind), item["item_type"].ToString());

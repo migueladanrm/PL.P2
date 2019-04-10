@@ -47,8 +47,7 @@ namespace SurveyCenter.UI
             int count = 1;
 
             foreach(JObject item in survey["items"]) {
-                var ctrl = new SurveyItem(item);
-                ctrl.TxtItemNumber.Text = $"{count}";
+                var ctrl = new SurveyItem(count,item);
                 StkSurveyItems.Children.Add(ctrl);
 
                 count++;

@@ -14,3 +14,7 @@
 	(to-json (first (filter (fn [s] (= (:id s) id)) (from-json db)))))
 
 (defn survey-item-add [db survey item])
+
+(defn survey-item-del [db survey item-id])
+
+(defn survey-item-upd [db survey item-upd])

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
 using SurveyCenter.Models;
 
 namespace SurveyCenter.UI.Controls
@@ -26,9 +27,17 @@ namespace SurveyCenter.UI.Controls
             InitializeComponent();
         }
 
-        public SurveyEditorItem(SurveyItem item)
+        public SurveyEditorItem(JObject item)
         {
             InitializeComponent();
+
+            LoadItem(item);
+        }
+
+        private void LoadItem(JObject item)
+        {
+            TxtItemCaption.Text = (string)item["caption"];
+
         }
 
         public int ItemId { get; set; }

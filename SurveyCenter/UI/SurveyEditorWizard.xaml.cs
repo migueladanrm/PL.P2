@@ -84,5 +84,16 @@ namespace SurveyCenter.UI
         {
 
         }
+
+        private void DlgNewItemBtnCreateItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (RbnSurveyItemModeChoice.IsChecked.Value) {
+
+            }
+
+            if (RbnSurveyItemModeNumericScale.IsChecked.Value) {
+
+            }
+        }
     }
 }

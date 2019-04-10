@@ -52,7 +52,7 @@
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
+        <Grid x:Name="LayoutSecondary">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
@@ -71,11 +71,16 @@
                         <xctk:WatermarkTextBox x:Name="SurveyItemTitle" FontFamily="Segoe UI Semibold" FontSize="13" TextWrapping="Wrap" VerticalContentAlignment="Center"
                                                Watermark="Nueva pregunta" Padding="5,3"/>
                         <StackPanel>
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type RadioButton}">
+                                    <Setter Property="FontSize" Value="13"/>
+                                </Style>
+                            </StackPanel.Resources>
                             <TextBlock Text="Seleccione el tipo de pregunta:" Padding="0,10,0,5"/>
-                            <RadioButton x:Name="RbnSurveyItemModeChoice"       Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
-                                         Tag="opt.choice" Content="Por opinión."/>
+                            <RadioButton x:Name="RbnSurveyItemModeChoice" Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
+                                         Tag="opt.choice" Content="Selección única."/>
                             <RadioButton x:Name="RbnSurveyItemModeNumericScale" Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
-                                         Tag="opt.numericscale" Content="Basado en escala numérica."/>
+                                         Tag="opt.numericscale" Content="Escala numérica."/>
                         </StackPanel>
 
                         <Grid Margin="5,10">
@@ -150,7 +155,7 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <Button Content="Agregar elemento" HorizontalAlignment="Right"/>
+                                <Button Content="Agregar elemento" HorizontalAlignment="Left" Margin="0,5" Padding="10,3"/>
                                 <StackPanel x:Name="StkSurveyEditorItemChoiceModeItemsContainer" Grid.Row="1">
                                     <Grid >
                                         <Grid.ColumnDefinitions>
@@ -159,7 +164,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <xctk:WatermarkTextBox />
-                                        <Button Content="Remover" Grid.Column="1"/>
+                                        <Button Content="Remover" Grid.Column="1" Margin="10,0,0,0"/>
 
                                     </Grid>
                                 </StackPanel>
@@ -169,13 +174,18 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,5,0,0">
-                        <Button Content="Crear" Padding="10,3"/>
-                        <Button Click="BtnHideLS_Click" Content="Cancelar" Padding="10,3"/>
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Padding" Value="10,3"/>
+                                <Setter Property="Margin" Value="10,0,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        
+                        <Button Click="DlgNewItemBtnCreateItem_Click" Content="Crear" />
+                        <Button Click="BtnHideLS_Click" Content="Cancelar"/>
                     </StackPanel>
                 </Grid>
             </Border>
-
         </Grid>
     </Grid>
-
 </Window>

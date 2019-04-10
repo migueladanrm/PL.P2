@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SurveyCenter.UI"
         mc:Ignorable="d"
-        Title="SurveyCenter" Height="450" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
+        Title="SurveyCenter" Height="450" Width="800" MinHeight="400" MinWidth="700" WindowStartupLocation="CenterScreen" UseLayoutRounding="True">
 
     <Window.Resources>
         <Style x:Key="LSDialog" TargetType="{x:Type Border}">
@@ -48,8 +48,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="26" Foreground="Gray" HorizontalAlignment="Center"
-                    Text="¿Qué desea hacer?"/>
+                    <TextBlock FontFamily="Segoe UI Semilight" FontSize="28" Foreground="Gray" HorizontalAlignment="Center"
+                               Text="¿Qué desea hacer?"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Button}">
@@ -61,7 +61,7 @@
                         </StackPanel.Resources>
                         <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>
                         <Button Click="BtnStartAction_Click" Tag="Action.CreateSurvey" Content="Crear una encuesta"/>
-                        <Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>
+                        <!--<Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>-->
                     </StackPanel>
                 </Grid>
             </Border>
