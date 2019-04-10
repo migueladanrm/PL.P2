@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SurveyCenter.UI"
+        xmlns:controls="clr-namespace:SurveyCenter.UI.Controls"
         mc:Ignorable="d"
         Title="Editor de encuestas" MinHeight="500" Height="550" MinWidth="650" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
 
@@ -52,13 +53,13 @@
 
             <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="StkSurveyItems">
-                    
+
                 </StackPanel>
             </ScrollViewer>
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
+        <Grid x:Name="LayoutSecondary">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
@@ -83,14 +84,14 @@
                                 </Style>
                             </StackPanel.Resources>
                             <TextBlock Text="Seleccione el tipo de pregunta:" Padding="0,10,0,5"/>
-                            <RadioButton x:Name="RbnSurveyItemModeChoice" Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
+                            <RadioButton x:Name="RbnSurveyItemModeChoice" Checked="RbnSurveyItemMode_Checked"
                                          Tag="opt.choice" Content="Selección única."/>
-                            <RadioButton x:Name="RbnSurveyItemModeNumericScale" Checked="RbnSurveyItemMode_Checked" Unchecked="RbnSurveyItemMode_Unchecked"
+                            <RadioButton x:Name="RbnSurveyItemModeNumericScale" Checked="RbnSurveyItemMode_Checked"
                                          Tag="opt.numericscale" Content="Escala numérica."/>
                         </StackPanel>
 
                         <Grid Margin="5,10">
-                            <Grid x:Name="SurveyItemNumericScaleMode">
+                            <Grid x:Name="SurveyItemNumericScaleMode" d:IsHidden="True">
                                 <Grid.Resources>
                                     <Style x:Key="TbxScaleItemIcon" TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -99,7 +100,6 @@
                                         <Setter Property="FontSize" Value="14"/>
                                         <Setter Property="Foreground" Value="White"/>
                                     </Style>
-
                                     <Style x:Key="TbxScaleItemText" TargetType="{x:Type xctk:WatermarkTextBox}">
                                         <Setter Property="Grid.Column" Value="1"/>
                                         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -155,24 +155,22 @@
 
 
                             </Grid>
-                            <Grid x:Name="SurveyItemChoiceMode" d:IsHidden="True">
+                            <Grid x:Name="SurveyItemChoiceMode">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <Button Content="Agregar elemento" HorizontalAlignment="Left" Margin="0,5" Padding="10,3"/>
+                                <Button Click="BtnAddItemOption_Click" Content="Agregar elemento" HorizontalAlignment="Left" Margin="0,5" Padding="10,3"/>
                                 <StackPanel x:Name="StkSurveyEditorItemChoiceModeItemsContainer" Grid.Row="1">
-                                    <Grid >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <xctk:WatermarkTextBox />
-                                        <Button Content="Remover" Grid.Column="1" Margin="10,0,0,0"/>
-
-                                    </Grid>
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type controls:SurveyEditorWizardSingleChoiceItemOption}">
+                                            <Setter Property="Margin" Value="0,0,0,5"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    
+                                    <controls:SurveyEditorWizardSingleChoiceItemOption/>
+                                    <controls:SurveyEditorWizardSingleChoiceItemOption/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -186,7 +184,7 @@
                                 <Setter Property="Margin" Value="10,0,0,0"/>
                             </Style>
                         </StackPanel.Resources>
-                        
+
                         <Button Click="DlgNewItemBtnCreateItem_Click" Content="Crear" />
                         <Button Click="BtnHideLS_Click" Content="Cancelar"/>
                     </StackPanel>

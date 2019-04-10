@@ -67,6 +67,16 @@ namespace SurveyCenter.UI
             DlgNewItemNS3Caption.Text = string.Empty;
             DlgNewItemNS4Caption.Text = string.Empty;
             DlgNewItemNS5Caption.Text = string.Empty;
+
+            StkSurveyEditorItemChoiceModeItemsContainer.Children.Clear();
+
+            var item1 = new SurveyEditorWizardSingleChoiceItemOption();
+            var item2 = new SurveyEditorWizardSingleChoiceItemOption();
+            item1.RequestDelete += ItemModeChoiceOptionRequestDelete;
+            item2.RequestDelete += ItemModeChoiceOptionRequestDelete;
+
+            StkSurveyEditorItemChoiceModeItemsContainer.Children.Add(item1);
+            StkSurveyEditorItemChoiceModeItemsContainer.Children.Add(item2);
         }
 
         private void BtnHideLS_Click(object sender, RoutedEventArgs e)
@@ -94,39 +104,69 @@ namespace SurveyCenter.UI
             }
         }
 
-        private void RbnSurveyItemMode_Unchecked(object sender, RoutedEventArgs e)
+        private void ItemModeChoiceOptionRequestDelete(object sender)
         {
+            if (StkSurveyEditorItemChoiceModeItemsContainer.Children.Count < 3) {
+                MessageBox.Show("El item debe tener al menos dos opciones.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            } else {
+                if (!(sender is SurveyEditorWizardSingleChoiceItemOption))
+                    return;
 
+                foreach (FrameworkElement child in StkSurveyEditorItemChoiceModeItemsContainer.Children) {
+                    if (child == (FrameworkElement)sender) {
+                        StkSurveyEditorItemChoiceModeItemsContainer.Children.Remove(child);
+                        break;
+                    }
+                }
+            }
         }
 
         private void DlgNewItemBtnCreateItem_Click(object sender, RoutedEventArgs e)
         {
-            if (RbnSurveyItemModeChoice.IsChecked.Value) {
+            var item = new JObject {
+                    { "caption", SurveyItemTitle.Text },
+                    { "item_type", RbnSurveyItemModeChoice.IsChecked.Value ? 1:2 },
+                    { "content", null }
+            };
 
+            if (RbnSurveyItemModeChoice.IsChecked.Value) {
+                var tmpContent = new JArray();
+                foreach(FrameworkElement child in StkSurveyEditorItemChoiceModeItemsContainer.Children) {
+                    tmpContent.Add(((SurveyEditorWizardSingleChoiceItemOption)child).OptionCaption);
+                }
+
+                item["content"] = tmpContent;
             }
 
             if (RbnSurveyItemModeNumericScale.IsChecked.Value) {
-                var item = new JObject {
-                    { "caption", SurveyItemTitle.Text },
-                    { "item_type", 2 },
-                    { "content", new JArray {
-                        string.IsNullOrWhiteSpace(DlgNewItemNS1Caption.Text) ? DlgNewItemNS1Caption.Watermark.ToString() : DlgNewItemNS1Caption.Text,
-                        string.IsNullOrWhiteSpace(DlgNewItemNS2Caption.Text) ? DlgNewItemNS2Caption.Watermark.ToString() : DlgNewItemNS2Caption.Text,
-                        string.IsNullOrWhiteSpace(DlgNewItemNS3Caption.Text) ? DlgNewItemNS3Caption.Watermark.ToString() : DlgNewItemNS3Caption.Text,
-                        string.IsNullOrWhiteSpace(DlgNewItemNS4Caption.Text) ? DlgNewItemNS4Caption.Watermark.ToString() : DlgNewItemNS4Caption.Text,
-                        string.IsNullOrWhiteSpace(DlgNewItemNS5Caption.Text) ? DlgNewItemNS5Caption.Watermark.ToString() : DlgNewItemNS5Caption.Text
-                        }
-                    }
+
+                item["content"] = new JArray {
+                    string.IsNullOrWhiteSpace(DlgNewItemNS1Caption.Text) ? DlgNewItemNS1Caption.Watermark.ToString() : DlgNewItemNS1Caption.Text,
+                    string.IsNullOrWhiteSpace(DlgNewItemNS2Caption.Text) ? DlgNewItemNS2Caption.Watermark.ToString() : DlgNewItemNS2Caption.Text,
+                    string.IsNullOrWhiteSpace(DlgNewItemNS3Caption.Text) ? DlgNewItemNS3Caption.Watermark.ToString() : DlgNewItemNS3Caption.Text,
+                    string.IsNullOrWhiteSpace(DlgNewItemNS4Caption.Text) ? DlgNewItemNS4Caption.Watermark.ToString() : DlgNewItemNS4Caption.Text,
+                    string.IsNullOrWhiteSpace(DlgNewItemNS5Caption.Text) ? DlgNewItemNS5Caption.Watermark.ToString() : DlgNewItemNS5Caption.Text
                 };
-
-                //Workspace.SurveyItemAdd(item);
-
-                var control = new SurveyEditorItem(item);
-
-                StkSurveyItems.Children.Add(control);
             }
 
+            //Workspace.SurveyItemAdd(item);
+
+            var control = new SurveyEditorItem(item);
+            StkSurveyItems.Children.Add(control);
+
             HideLS();
+        }
+
+        private void BtnAddItemOption_Click(object sender, RoutedEventArgs e)
+        {
+            if (StkSurveyEditorItemChoiceModeItemsContainer.Children.Count >= 8)
+                MessageBox.Show("Ha excedido la cantidad de opciones.", "No se puede agregar la opción", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else {
+                var itemOption = new SurveyEditorWizardSingleChoiceItemOption();
+                itemOption.RequestDelete += ItemModeChoiceOptionRequestDelete;
+
+                StkSurveyEditorItemChoiceModeItemsContainer.Children.Add(itemOption);
+            }
         }
     }
 }

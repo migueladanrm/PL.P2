@@ -97,6 +97,9 @@
     <Compile Include="UI\Controls\SurveyEditorItem.xaml.cs">
       <DependentUpon>SurveyEditorItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\SurveyEditorWizardSingleChoiceItemOption.xaml.cs">
+      <DependentUpon>SurveyEditorWizardSingleChoiceItemOption.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\SurveyItem.xaml.cs">
       <DependentUpon>SurveyItem.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\SurveyEditorItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\SurveyEditorWizardSingleChoiceItemOption.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

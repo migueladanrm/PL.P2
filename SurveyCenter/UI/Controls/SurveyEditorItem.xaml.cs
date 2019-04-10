@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json.Linq;
+using SurveyCenter.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Newtonsoft.Json.Linq;
-using SurveyCenter.Models;
 
 namespace SurveyCenter.UI.Controls
 {
@@ -45,11 +34,19 @@ namespace SurveyCenter.UI.Controls
             var itemType = (SurveyItemKind)Enum.Parse(typeof(SurveyItemKind), item["item_type"].ToString());
 
             if (itemType.Equals(SurveyItemKind.SingleChoice)) {
+                ModeSingleChoice.Visibility = Visibility.Visible;
+                ModeScaleChoice.Visibility = Visibility.Collapsed;
 
+                foreach (string str in item["content"]) {
+                    ModeSingleChoice.Children.Add(new TextBlock {
+                        Text = str
+                    });
+                }
             }
 
             if (itemType.Equals(SurveyItemKind.ScaleChoice)) {
                 ModeScaleChoice.Visibility = Visibility.Visible;
+                ModeSingleChoice.Visibility = Visibility.Collapsed;
 
                 MScaleOptCaption1.Text = (string)item["content"][0];
                 MScaleOptCaption2.Text = (string)item["content"][1];
