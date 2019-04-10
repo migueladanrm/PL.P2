@@ -1,5 +1,7 @@
 (ns surveycenter (:require [clojure.data.json :as json]))
 
+; Funciones de conversión auxiliares.
+
 (defn to-json [obj]
 	(json/write-str obj))
 
@@ -7,16 +9,21 @@
 	(json/read-str json :key-fn keyword))
 ;-------------------------------------------------
 
-(defn survey-library-get []
+; Obtiene la base de datos de encuestas.
+(defn survey-db-get []
 	(to-json (from-json (slurp "data/survey-repo.json"))))
 
-(defn survey-library-save [lib]
-	(spit "data/survey-repo.json" lib :append true))
+; Guarda la base de datos de encuestas.
+(defn survey-db-save [lib]
+	(spit "data/survey-repo.json" lib))
 
-(defn survey-new [library id name]
-	(to-json (conj (from-json library) {:id id :name name :items []})))
+; Crea una nueva encuesta en la base de datos de encuestas.
+(defn survey-new [db id name]
+	(to-json (conj (from-json db) {:id id :name name :items []})))
 
-(defn survey-get [db id]
-	(to-json (first (filter (fn [s] (= (:id s) id)) (from-json db)))))
+; Obtiene una encuesta por identificador.
+(defn survey-get [id]
+	(to-json (first (filter (fn [s] (= (:id s) id)) (from-json (survey-db-get))))))
 
-(defn survey-item-add [db survey item])
+; Agrega un elemento a una encuesta específica.
+(defn survey-item-add [survey item])

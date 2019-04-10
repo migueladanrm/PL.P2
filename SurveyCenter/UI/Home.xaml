@@ -61,7 +61,6 @@
                         </StackPanel.Resources>
                         <Button Click="BtnStartAction_Click" Tag="Action.AnswerSurvey" Content="Responder una encuesta"/>
                         <Button Click="BtnStartAction_Click" Tag="Action.CreateSurvey" Content="Crear una encuesta"/>
-                        <!--<Button Click="BtnStartAction_Click" Tag="Action.ViewStats" Content="Ver estadísticas"/>-->
                     </StackPanel>
                 </Grid>
             </Border>

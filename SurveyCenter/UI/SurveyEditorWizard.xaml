@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:SurveyCenter.UI"
         xmlns:controls="clr-namespace:SurveyCenter.UI.Controls"
         mc:Ignorable="d"
-        Title="Editor de encuestas" MinHeight="500" Height="550" MinWidth="650" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
+        Title="Editor de encuestas" MinHeight="500" Height="550" MinWidth="650" Width="700" UseLayoutRounding="True" WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
 
     <Grid x:Name="LayoutRoot">
         <Grid x:Name="LayoutPrimary">

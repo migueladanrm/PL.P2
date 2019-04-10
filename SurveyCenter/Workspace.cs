@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using clojure.lang;
-using static System.Console;
+﻿using clojure.lang;
 using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
+using static System.Console;
 
 namespace SurveyCenter
 {
@@ -51,21 +47,26 @@ namespace SurveyCenter
 
         public static JArray SurveyLibraryGet()
         {
-            var surveyLibraryGet = RT.var("surveycenter", "survey-library-get");
+            var surveyLibraryGet = RT.var("surveycenter", "survey-db-get");
             var library = JArray.Parse(Convert.ToString(surveyLibraryGet.invoke()));
 
             return library;
         }
 
-        public static JObject SurveyItemAdd(JObject surveyItem)
+        public static JObject SurveyItemAdd(string surveyId, JObject surveyItem)
         {
-            throw new NotImplementedException();
+            var itemAdd = RT.var(CORE_NS, "survey-item-add");
+            var result = Convert.ToString(itemAdd.invoke(surveyId, surveyItem.ToString()));
+
+            SurveyLibrarySave(JArray.Parse(result));
+
+            return surveyItem;
         }
 
         public static JObject SurveyGet(string surveyId)
         {
             var surveyGet = RT.var(CORE_NS, "survey-get");
-            var result = surveyGet.invoke(SurveyLibraryGet().ToString(), surveyId);
+            var result = surveyGet.invoke(surveyId);
 
             try {
                 return JObject.Parse(result.ToString());
@@ -79,7 +80,6 @@ namespace SurveyCenter
             var id = GenerateHexId();
             var surveyNew = RT.var(CORE_NS, "survey-new");
             var result = surveyNew.invoke(SurveyLibraryGet().ToString(), id, name);
-
             SurveyLibrarySave(JArray.Parse(result.ToString()));
 
             WriteLine($"Se ha creado una encuesta con el identificador '{id}'.");

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json.Linq;
+using SurveyCenter.UI.Controls;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Newtonsoft.Json.Linq;
-using SurveyCenter.UI.Controls;
 
 namespace SurveyCenter.UI
 {
@@ -131,7 +120,7 @@ namespace SurveyCenter.UI
 
             if (RbnSurveyItemModeChoice.IsChecked.Value) {
                 var tmpContent = new JArray();
-                foreach(FrameworkElement child in StkSurveyEditorItemChoiceModeItemsContainer.Children) {
+                foreach (FrameworkElement child in StkSurveyEditorItemChoiceModeItemsContainer.Children) {
                     tmpContent.Add(((SurveyEditorWizardSingleChoiceItemOption)child).OptionCaption);
                 }
 
@@ -149,7 +138,7 @@ namespace SurveyCenter.UI
                 };
             }
 
-            //Workspace.SurveyItemAdd(item);
+            //Workspace.SurveyItemAdd(currentSurvey, item);
 
             var control = new SurveyEditorItem(item);
             StkSurveyItems.Children.Add(control);
@@ -167,6 +156,11 @@ namespace SurveyCenter.UI
 
                 StkSurveyEditorItemChoiceModeItemsContainer.Children.Add(itemOption);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            new Home().Show();
         }
     }
 }
