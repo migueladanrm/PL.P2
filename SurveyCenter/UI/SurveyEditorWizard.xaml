@@ -12,6 +12,7 @@
         <Grid x:Name="LayoutPrimary">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -34,25 +35,30 @@
                 </Grid>
             </Border>
 
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <Border BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" VerticalAlignment="Top" Padding="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+            <Border BorderBrush="#C8C8C8" BorderThickness="0,0,0,1" VerticalAlignment="Top" Padding="10" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"
+                    <TextBlock Text="Encuesta:" Padding="0,0,10,0" VerticalAlignment="Center"
                                    Foreground="Gray" FontFamily="Segoe UI Semibold"/>
-                        <TextBlock x:Name="TxtSurveyName" TextWrapping="Wrap" Grid.Column="1" Margin="0,5" FontFamily="Segoe UI Semibold" FontSize="13"
+                    <TextBlock x:Name="TxtSurveyName" TextWrapping="Wrap" Grid.Column="1" Margin="0,5" FontFamily="Segoe UI Semibold" FontSize="13"
                                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."/>
-                    </Grid>
-                </Border>
+                </Grid>
+            </Border>
+
+
+            <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="StkSurveyItems">
+                    
+                </StackPanel>
             </ScrollViewer>
 
         </Grid>
 
-        <Grid x:Name="LayoutSecondary">
+        <Grid x:Name="LayoutSecondary" d:IsHidden="True">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Grid.Background>
@@ -84,7 +90,7 @@
                         </StackPanel>
 
                         <Grid Margin="5,10">
-                            <Grid x:Name="SurveyItemNumericScaleMode" d:IsHidden="True">
+                            <Grid x:Name="SurveyItemNumericScaleMode">
                                 <Grid.Resources>
                                     <Style x:Key="TbxScaleItemIcon" TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -116,40 +122,40 @@
                                 <Border Grid.Row="0" Background="#FFB4B4B4">
                                     <TextBlock Text="1" Style="{StaticResource TbxScaleItemIcon}"/>
                                 </Border>
-                                <xctk:WatermarkTextBox Grid.Row="0" Style="{StaticResource TbxScaleItemText}"
+                                <xctk:WatermarkTextBox x:Name="DlgNewItemNS1Caption" Grid.Row="0" Style="{StaticResource TbxScaleItemText}"
                                                        Watermark="Muy en desacuerdo"/>
 
                                 <!--Escala: 2-->
                                 <Border Grid.Row="1" Background="#FF969696">
                                     <TextBlock Text="2" Style="{StaticResource TbxScaleItemIcon}"/>
                                 </Border>
-                                <xctk:WatermarkTextBox Grid.Row="1" Style="{StaticResource TbxScaleItemText}"
+                                <xctk:WatermarkTextBox x:Name="DlgNewItemNS2Caption" Grid.Row="1" Style="{StaticResource TbxScaleItemText}"
                                                        Watermark="En desacuerdo"/>
 
                                 <!--Escala: 3-->
                                 <Border Grid.Row="2" Background="#787878">
                                     <TextBlock Text="3" Style="{StaticResource TbxScaleItemIcon}"/>
                                 </Border>
-                                <xctk:WatermarkTextBox Grid.Row="2" Style="{StaticResource TbxScaleItemText}"
+                                <xctk:WatermarkTextBox x:Name="DlgNewItemNS3Caption" Grid.Row="2" Style="{StaticResource TbxScaleItemText}"
                                                        Watermark="Neutral"/>
 
                                 <!--Escala: 4-->
                                 <Border Grid.Row="3" Background="#FF5A5A5A">
                                     <TextBlock Text="4" Style="{StaticResource TbxScaleItemIcon}"/>
                                 </Border>
-                                <xctk:WatermarkTextBox Grid.Row="3" Style="{StaticResource TbxScaleItemText}"
+                                <xctk:WatermarkTextBox x:Name="DlgNewItemNS4Caption" Grid.Row="3" Style="{StaticResource TbxScaleItemText}"
                                                        Watermark="De acuerdo"/>
 
                                 <!--Escala: 5-->
                                 <Border Grid.Row="4" Background="#FF3C3C3C">
                                     <TextBlock Text="5" Style="{StaticResource TbxScaleItemIcon}"/>
                                 </Border>
-                                <xctk:WatermarkTextBox  Grid.Row="4" Style="{StaticResource TbxScaleItemText}"
+                                <xctk:WatermarkTextBox x:Name="DlgNewItemNS5Caption" Grid.Row="4" Style="{StaticResource TbxScaleItemText}"
                                                         Watermark="Muy de acuerdo"/>
 
 
                             </Grid>
-                            <Grid x:Name="SurveyItemChoiceMode">
+                            <Grid x:Name="SurveyItemChoiceMode" d:IsHidden="True">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition />

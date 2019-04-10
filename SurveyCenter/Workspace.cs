@@ -40,7 +40,7 @@ namespace SurveyCenter
 
             RT.load("json");
             RT.load("sc.core");
-
+            
             WriteLine("Clojure runtime loaded!");
         }
 
@@ -50,7 +50,17 @@ namespace SurveyCenter
         }
 
         public static JArray SurveyLibraryGet()
-            => JArray.Parse(File.ReadAllText(PATH_SURVEY_REPO));
+        {
+            var surveyLibraryGet = RT.var("surveycenter", "survey-library-get");
+            var library = JArray.Parse(Convert.ToString(surveyLibraryGet.invoke()));
+
+            return library;
+        }
+
+        public static JObject SurveyItemAdd(JObject surveyItem)
+        {
+            throw new NotImplementedException();
+        }
 
         public static JObject SurveyGet(string surveyId)
         {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json.Linq;
+using SurveyCenter.UI.Controls;
 
 namespace SurveyCenter.UI
 {
@@ -56,11 +57,24 @@ namespace SurveyCenter.UI
 
         private void SetupSurveyItemEditor()
         {
-            SurveyItemTitle.Clear();
+            SurveyItemTitle.Focus();
+
+            SurveyItemTitle.Clear(); 
             RbnSurveyItemModeChoice.IsChecked = true;
+
+            DlgNewItemNS1Caption.Text = string.Empty;
+            DlgNewItemNS2Caption.Text = string.Empty;
+            DlgNewItemNS3Caption.Text = string.Empty;
+            DlgNewItemNS4Caption.Text = string.Empty;
+            DlgNewItemNS5Caption.Text = string.Empty;
         }
 
         private void BtnHideLS_Click(object sender, RoutedEventArgs e)
+        {
+            HideLS();
+        }
+
+        private void HideLS()
         {
             LayoutSecondary.Visibility = Visibility.Collapsed;
         }
@@ -92,8 +106,27 @@ namespace SurveyCenter.UI
             }
 
             if (RbnSurveyItemModeNumericScale.IsChecked.Value) {
+                var item = new JObject {
+                    { "caption", SurveyItemTitle.Text },
+                    { "item_type", 2 },
+                    { "content", new JArray {
+                        string.IsNullOrWhiteSpace(DlgNewItemNS1Caption.Text) ? DlgNewItemNS1Caption.Watermark.ToString() : DlgNewItemNS1Caption.Text,
+                        string.IsNullOrWhiteSpace(DlgNewItemNS2Caption.Text) ? DlgNewItemNS2Caption.Watermark.ToString() : DlgNewItemNS2Caption.Text,
+                        string.IsNullOrWhiteSpace(DlgNewItemNS3Caption.Text) ? DlgNewItemNS3Caption.Watermark.ToString() : DlgNewItemNS3Caption.Text,
+                        string.IsNullOrWhiteSpace(DlgNewItemNS4Caption.Text) ? DlgNewItemNS4Caption.Watermark.ToString() : DlgNewItemNS4Caption.Text,
+                        string.IsNullOrWhiteSpace(DlgNewItemNS5Caption.Text) ? DlgNewItemNS5Caption.Watermark.ToString() : DlgNewItemNS5Caption.Text
+                        }
+                    }
+                };
 
+                //Workspace.SurveyItemAdd(item);
+
+                var control = new SurveyEditorItem(item);
+
+                StkSurveyItems.Children.Add(control);
             }
+
+            HideLS();
         }
     }
 }

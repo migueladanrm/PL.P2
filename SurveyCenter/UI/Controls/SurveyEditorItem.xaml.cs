@@ -22,6 +22,8 @@ namespace SurveyCenter.UI.Controls
     /// </summary>
     public partial class SurveyEditorItem : UserControl
     {
+        private JObject surveyItem;
+
         public SurveyEditorItem()
         {
             InitializeComponent();
@@ -31,6 +33,8 @@ namespace SurveyCenter.UI.Controls
         {
             InitializeComponent();
 
+            surveyItem = item;
+
             LoadItem(item);
         }
 
@@ -38,11 +42,21 @@ namespace SurveyCenter.UI.Controls
         {
             TxtItemCaption.Text = (string)item["caption"];
 
+            var itemType = (SurveyItemKind)Enum.Parse(typeof(SurveyItemKind), item["item_type"].ToString());
+
+            if (itemType.Equals(SurveyItemKind.SingleChoice)) {
+
+            }
+
+            if (itemType.Equals(SurveyItemKind.ScaleChoice)) {
+                ModeScaleChoice.Visibility = Visibility.Visible;
+
+                MScaleOptCaption1.Text = (string)item["content"][0];
+                MScaleOptCaption2.Text = (string)item["content"][1];
+                MScaleOptCaption3.Text = (string)item["content"][2];
+                MScaleOptCaption4.Text = (string)item["content"][3];
+                MScaleOptCaption5.Text = (string)item["content"][4];
+            }
         }
-
-        public int ItemId { get; set; }
-        public string ItemCaption { get; set; }
-        public SurveyItemKind ItemKind { get; set; }
-
     }
 }

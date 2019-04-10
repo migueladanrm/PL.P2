@@ -7,6 +7,12 @@
 	(json/read-str json :key-fn keyword))
 ;-------------------------------------------------
 
+(defn survey-library-get []
+	(to-json (from-json (slurp "data/survey-repo.json"))))
+
+(defn survey-library-save [lib]
+	(spit "data/survey-repo.json" lib :append true))
+
 (defn survey-new [library id name]
 	(to-json (conj (from-json library) {:id id :name name :items []})))
 
