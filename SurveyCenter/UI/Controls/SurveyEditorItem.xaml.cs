@@ -22,6 +22,8 @@ namespace SurveyCenter.UI.Controls
         {
             InitializeComponent();
 
+            BtnDelete.Visibility = Visibility.Collapsed;
+
             surveyItem = item;
 
             LoadItem(item);

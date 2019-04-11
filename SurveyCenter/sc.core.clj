@@ -25,5 +25,6 @@
 (defn survey-get [id]
 	(to-json (first (filter (fn [s] (= (:id s) id)) (from-json (survey-db-get))))))
 
-; Agrega un elemento a una encuesta específica.
-(defn survey-item-add [survey item])
+; Agrega un item a una encuesta específica.
+(defn survey-item-add [survey item]
+	(to-json (apply vector(map (fn [y] (if (= (y :id) survey) (assoc y :items (conj (y :items) (from-json item)) )y)) (from-json (survey-db-get))))))

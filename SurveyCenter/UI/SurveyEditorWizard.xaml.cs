@@ -138,7 +138,7 @@ namespace SurveyCenter.UI
                 };
             }
 
-            //Workspace.SurveyItemAdd(currentSurvey, item);
+            Workspace.SurveyItemAdd(currentSurvey, item);
 
             var control = new SurveyEditorItem(item);
             StkSurveyItems.Children.Add(control);
@@ -161,6 +161,11 @@ namespace SurveyCenter.UI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             new Home().Show();
+        }
+
+        private void BtnPublish_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

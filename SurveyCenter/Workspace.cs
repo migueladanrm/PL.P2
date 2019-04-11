@@ -6,6 +6,9 @@ using static System.Console;
 
 namespace SurveyCenter
 {
+    /// <summary>
+    /// Capa de interoperabilidad Clojure/.NET Framework.
+    /// </summary>
     public static class Workspace
     {
         public const string CORE_NS = "surveycenter";
@@ -36,7 +39,7 @@ namespace SurveyCenter
 
             RT.load("json");
             RT.load("sc.core");
-            
+
             WriteLine("Clojure runtime loaded!");
         }
 
@@ -57,6 +60,7 @@ namespace SurveyCenter
         {
             var itemAdd = RT.var(CORE_NS, "survey-item-add");
             var result = Convert.ToString(itemAdd.invoke(surveyId, surveyItem.ToString()));
+            WriteLine(Convert.ToString(result));
 
             SurveyLibrarySave(JArray.Parse(result));
 
@@ -85,7 +89,6 @@ namespace SurveyCenter
             WriteLine($"Se ha creado una encuesta con el identificador '{id}'.");
 
             return id;
-
         }
     }
 }
