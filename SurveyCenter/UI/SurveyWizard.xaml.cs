@@ -11,6 +11,8 @@ namespace SurveyCenter.UI
     {
         private JObject survey;
 
+        private bool showStatistics = false;
+
         public SurveyWizard()
         {
             InitializeComponent();
@@ -44,7 +46,8 @@ namespace SurveyCenter.UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            new Home().Show();
+            if (!showStatistics)
+                new Home().Show();
         }
 
         private void BtnFinish_Click(object sender, RoutedEventArgs e)
@@ -71,6 +74,10 @@ namespace SurveyCenter.UI
             Workspace.SurveyResponseSave(surveyResponse);
 
             MessageBox.Show("¡Gracias por su respuesta!", "Ha finalizado.", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            showStatistics = true;
+
+            new SurveyStatistics(survey["id"].ToString()).Show();
 
             Close();
         }

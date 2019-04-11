@@ -34,11 +34,14 @@ namespace SurveyCenter.UI
 
             survey = Workspace.SurveyGet(surveyId);
             surveyResponses = Workspace.SurveyResponsesGet(surveyId);
+
+            LoadStatistics();
         }
 
         private void LoadStatistics()
         {
-
+            TxtSurveyName.Text = survey["name"].ToString();
+            TxtNumberOfResponses.Text = surveyResponses.Count.ToString();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
