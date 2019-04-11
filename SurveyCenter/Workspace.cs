@@ -104,12 +104,12 @@ namespace SurveyCenter
             SurveyResponsesSave(JArray.Parse(data.ToString()));
         }
 
-        public static void SurveyResponsesGet(string id)
+        public static JArray SurveyResponsesGet(string id)
         {
             var surveyResponseSave = RT.var(CORE_NS, "survey-responses-get");
             var data = surveyResponseSave.invoke(id);
 
-            Console.WriteLine(data.ToString());
+            return JArray.Parse(data.ToString());
         }
     }
 }

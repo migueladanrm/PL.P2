@@ -80,7 +80,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\NumericScale.cs" />
     <Compile Include="Models\SurveyItemKind.cs" />
     <Compile Include="UI\Controls\SurveyEditorItem.xaml.cs">
       <DependentUpon>SurveyEditorItem.xaml</DependentUpon>
@@ -96,6 +95,9 @@
     </Compile>
     <Compile Include="UI\SurveyEditorWizard.xaml.cs">
       <DependentUpon>SurveyEditorWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SurveyStatistics.xaml.cs">
+      <DependentUpon>SurveyStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SurveyWizard.xaml.cs">
       <DependentUpon>SurveyWizard.xaml</DependentUpon>
@@ -158,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\SurveyEditorWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SurveyStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
