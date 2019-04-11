@@ -98,5 +98,10 @@ namespace SurveyCenter.UI
             new SurveyWizard(surveyId).Show();
             Close();
         }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Workspace.SurveyResponsesGet("c801dff0");
+        }
     }
 }

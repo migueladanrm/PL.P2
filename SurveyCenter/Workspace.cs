@@ -48,6 +48,11 @@ namespace SurveyCenter
             File.WriteAllText(PATH_SURVEY_REPO, payload.ToString());
         }
 
+        public static void SurveyResponsesSave(JArray payload)
+        {
+            File.WriteAllText(PATH_SURVEY_RESPONSES, payload.ToString());
+        }
+
         public static JArray SurveyLibraryGet()
         {
             var surveyLibraryGet = RT.var("surveycenter", "survey-db-get");
@@ -89,6 +94,22 @@ namespace SurveyCenter
             WriteLine($"Se ha creado una encuesta con el identificador '{id}'.");
 
             return id;
+        }
+
+        public static void SurveyResponseSave(JObject surveyResponse)
+        {
+            var surveyResponseSave = RT.var(CORE_NS, "survey-response-save");
+            var data = surveyResponseSave.invoke(surveyResponse.ToString());
+
+            SurveyResponsesSave(JArray.Parse(data.ToString()));
+        }
+
+        public static void SurveyResponsesGet(string id)
+        {
+            var surveyResponseSave = RT.var(CORE_NS, "survey-responses-get");
+            var data = surveyResponseSave.invoke(id);
+
+            Console.WriteLine(data.ToString());
         }
     }
 }

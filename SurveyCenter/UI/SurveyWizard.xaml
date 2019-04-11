@@ -14,6 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Border Background="WhiteSmoke" BorderBrush="#c8c8c8" BorderThickness="0,0,0,1" Grid.Row="0" MinHeight="50" Padding="0,10">
@@ -28,6 +29,12 @@
                     <controls:SurveyItem/>
                 </StackPanel>
             </ScrollViewer>
+
+            <Border BorderBrush="#c8c8c8" BorderThickness="0,1,0,0" Grid.Row="2">
+                <Grid>
+                    <Button x:Name="BtnFinish" Click="BtnFinish_Click" Content="Finalizar encuesta" HorizontalAlignment="Right" Margin="0,10,10,10" Padding="10,3" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
             
         </Grid>
         <Grid x:Name="LayoutSecondary" d:IsHidden="True">

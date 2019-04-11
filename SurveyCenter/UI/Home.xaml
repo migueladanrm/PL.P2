@@ -49,7 +49,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock FontFamily="Segoe UI Semilight" FontSize="28" Foreground="Gray" HorizontalAlignment="Center"
-                               Text="¿Qué desea hacer?"/>
+                               Text="¿Qué desea hacer?" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0">
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Button}">
