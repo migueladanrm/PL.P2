@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="SurveyCenter.UI.Controls.SurveyStatisticsItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SurveyCenter.UI.Controls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border x:Name="LayoutRoot" Background="White" BorderBrush="#c8c8c8" BorderThickness="0,0,0,1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="TxtItemNumber" Text="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" FontFamily="Segoe UI Bold" Foreground="Red" FontSize="15"/>
+                <TextBlock x:Name="TxtItemCaption" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontFamily="Segoe UI Semibold"
+                           Text="Item caption goes here!"/>
+            </Grid>
+
+            <lvc:PieChart Name="Chart" Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Right" InnerRadius="100" Margin="15">
+                <lvc:PieChart.ChartLegend>
+                    <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
+                </lvc:PieChart.ChartLegend>
+                <lvc:PieChart.DataTooltip>
+                    <lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
+                </lvc:PieChart.DataTooltip>
+            </lvc:PieChart>
+        </Grid>
+    </Border>
+</UserControl>

@@ -37,6 +37,10 @@
                         <TextBlock Text=" respuestas"/>
                     </StackPanel>
                 </Border>
+
+                <StackPanel x:Name="StkContent">
+
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
 
